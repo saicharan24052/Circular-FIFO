@@ -192,25 +192,25 @@ wire [4:0]w_addr,r_addr; // MSB represent wraping
                 mem[w_addr] <= data_in;  // Ensure addr gets updated in the right condition
             end 
             else begin     
-  				 temp_data_in <=  8'b0;
+  		temp_data_in <=  8'b0;
             end
-		end
+	end
   
   // To read data from FIFO
         always @(posedge r_clk) begin  
             if (!reset_n) begin  
-              data_out <=8'b0;
-             halt_r <= 1'b0;
+        	data_out <=8'b0;
+        	halt_r <= 1'b0;
             end  
             else if (r_en & !EMPTY ) begin 
-                 data_out <= mem[r_addr];  // Read from memory
-             halt_r <= 1'b0;
+	    	data_out <= mem[r_addr];  // Read from memory
+                halt_r <= 1'b0;
             end 
             else begin
-             halt_r <= 1'b1;
-            data_out <= 8'b0; 
+            	halt_r <= 1'b1;
+            	data_out <= 8'b0; 
             end
-		end
+	end
 
 endmodule
  
